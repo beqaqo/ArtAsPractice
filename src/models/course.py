@@ -10,6 +10,7 @@ class Course(BaseModel):
     description = db.Column(db.String, nullable=False)
     type = db.Column(db.String, nullable=False)
     price = db.Column(db.Float, nullable=False)
+    photo = db.Column(db.String, nullable=False)
 
     mentor_id = db.Column(db.Integer, db.ForeignKey("mentors.id"))
     mentor = db.relationship("Mentor", back_populates="courses")

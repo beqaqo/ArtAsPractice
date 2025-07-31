@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2" role="navigation">
+    <div class="container">
+        <a class="navbar-brand" href="{{ admin_view.admin.url }}">{{ admin_view.admin.name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse"
+                aria-controls="admin-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="admin-navbar-collapse">
+            {% block main_menu %}
+            <ul class="navbar-nav mr-auto">
+                {{ layout.menu() }}
+            </ul>
+            {% endblock %}
+
+            {% block menu_links %}
+            <ul class="navbar-nav ml-auto">
+                {{ layout.menu_links() }}
+            </ul>
+            {% endblock %}
+
+            {% block access_control %}
+            {% endblock %}
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% block messages %}
+        {{ layout.messages() }}
+    {% endblock %}
+
+    {# store the jinja2 context for form_rules rendering logic #}
+    {% set render_ctx = h.resolve_ctx() %}
+
+    {% block body %}{% endblock %}
+</div>

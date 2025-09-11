@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_admin.menu import MenuLink
 
-from src.admin_views import MentorView, CourseView
+from src.admin_views import MentorView, CourseView, ArtworkView
 from src.config import Config
-from flask_admin.contrib.sqla import ModelView
 from src.ext import db, migrate, api, admin, login_manager
 from src.commands import init_db, populate_db
+from src.models.artwork import Artwork
 from src.models.course import Course
 from src.models.mentor import Mentor
 from src.models.user import User
@@ -40,6 +40,7 @@ def register_extensions(app):
     admin.init_app(app)
     admin.add_view(MentorView(Mentor, db.session))
     admin.add_view(CourseView(Course, db.session))
+    admin.add_view(ArtworkView(Artwork, db.session))
     admin.add_link(MenuLink("Logout", url="/admin/logout"))
 
 def register_commands(app):

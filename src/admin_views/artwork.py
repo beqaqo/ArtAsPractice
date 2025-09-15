@@ -38,7 +38,7 @@ class ArtworkView(SecureModelView):
     column_formatters = {
         "price": lambda v, c, m, p: f"${m.price:,.2f}" if m.price else "",
         "images_preview": lambda v, c, m, p: Markup(
-            "".join(f'<img src="/static/uploads/{img.image_name}" width="50" style="margin-right:5px">'
-                    for img in m.images)
+            f'<img src="/static/uploads/{m.images[0].image_name}" width="50">'
+            if m.images else ""
         )
     }

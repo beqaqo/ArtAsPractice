@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_admin.menu import MenuLink
+from flask_cors import CORS
 
 from src.admin_views import MentorView, CourseView, ArtworkView
 from src.config import Config
@@ -25,6 +26,8 @@ def create_app():
     register_extensions(app)
     register_blueprints(app)
     register_commands(app)
+
+    CORS(app)
     return app
 
 def register_extensions(app):

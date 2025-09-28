@@ -40,6 +40,7 @@ def register_extensions(app):
     def load_user(_id):
         return User.query.get(_id)
 
+
     admin.init_app(app)
     admin.add_view(MentorView(Mentor, db.session))
     admin.add_view(CourseView(Course, db.session))

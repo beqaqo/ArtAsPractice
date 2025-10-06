@@ -18,4 +18,22 @@ class ArtworkApi(Resource):
         offset = (page - 1) * limit
 
         artworks = Artwork.query.offset(offset).limit(limit).all()
+
+        for artwork in artworks:
+            for img in artwork.images:
+                img.image_name = f"/static/uploads/{img.image_name}"
+
         return artworks
+
+
+@artwork_ns.route("/<int:id>")
+class ArtworkDetailApi(Resource):
+    @artwork_ns.marshal_with(artwork_model)
+    def get(self, id):
+        artwork = Artwork.query.get_or_404(id)
+        for img in artwork.images:
+            img.image_name = f"/static/uploads/{img.image_name}"
+
+        return artwork
+
+

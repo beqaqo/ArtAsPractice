@@ -8,8 +8,8 @@ class Course(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
-    type = db.Column(db.String, nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    type = db.Column(db.String, nullable=True)
+    price = db.Column(db.Float, nullable=True)
     photo = db.Column(db.String, nullable=False)
 
     mentor_id = db.Column(db.Integer, db.ForeignKey("mentors.id"))

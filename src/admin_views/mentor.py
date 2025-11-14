@@ -10,8 +10,8 @@ def generate_filename(obj, file):
 
 class MentorView(SecureModelView):
     can_create = True
-    can_edit = False
-    can_delete = False
+    can_edit = True
+    can_delete = True
     can_view_details = True
     create_modal = True
     edit_modal = True
@@ -19,7 +19,7 @@ class MentorView(SecureModelView):
     column_searchable_list = ["name"]
     column_exclude_list = ("photo",)
     column_formatters = {
-        "about": lambda v, c, m, n: m.about if len(m.about) <= 250 else m.about[:250] + "...",
+        "about": lambda v, c, m, n: (m.about or "")[:250] + ("..." if m.about and len(m.about) > 250 else ""),
     }
     form_overrides = {
         'photo': ImageUploadField

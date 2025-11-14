@@ -6,7 +6,7 @@ class Mentor(BaseModel):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    about = db.Column(db.String, nullable=False)
-    photo = db.Column(db.String, nullable=False)
+    about = db.Column(db.String, nullable=True)
+    photo = db.Column(db.String, nullable=True)
 
     courses = db.relationship("Course", back_populates="mentor")
